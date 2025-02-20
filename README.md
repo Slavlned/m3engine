@@ -5,6 +5,10 @@ Used in My Cozy Nook Game (not released yet)
 # engine
 Unity Engine 6.0.0
 
+# server-side
+There's not server side for your analytics and etc.
+You need to create it by yourself
+
 # main entities
 - M3Board - current level board with tiles (MonoBeh)
 - M3Fx - effects for m3 (MonoBeh)
