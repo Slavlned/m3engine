@@ -1,5 +1,6 @@
-# m3engine
-Open source m3engine ⭐
+# M3Base
+Open source m3 game base ⭐
+Used in My Cozy Nook Game (not released yet)
 
 # engine
 Unity Engine 6.0.0
