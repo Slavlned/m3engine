@@ -1,13 +1,15 @@
 # M3Base
-Open source m3 game base ⭐
-Used in My Cozy Nook Game (not released yet)
+Движок для матч-3 игр под юнити с открытым
+исходным кодом. ⭐
+Этот движок используется My Cozy Nook (ещё не релизнулась)
 
 # engine
 Unity Engine 6.0.0
 
 # server-side
-There's not server side for your analytics and etc.
-You need to create it by yourself
+Здесь нет серверной части для аналитики и т.д.
+Так что писать серверную часть и ServerService придется
+в ручную.
 
 # main entities
 - M3Board - current level board with tiles (MonoBeh)
