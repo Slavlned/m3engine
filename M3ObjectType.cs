@@ -12,19 +12,5 @@
     DONUT = 8,
     COLOR_BOMB = 9,
     JAR = 10,
-    GLOVES = 11,
-    PIE = 12,
-    CHEESE = 13,
-    ICECREAM = 14,
-    COMPASS = 15,
-    BUS = 16,
-    FOCUS_HAT = 17,
-    EGG = 18,
-    PIZZA_FURNACE = 19,
-    PIZZA = 20,
-    SWEETIE = 21,
-    GLOBE = 22,
-    WASHING_MACHINE = 23,
-    WASHING_CLOTH = 24,
-    COVER_HONEY = 25
+    COVER_HONEY = 11
 }
