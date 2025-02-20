@@ -13,6 +13,10 @@ public class M3Tile : MonoBehaviour
     // объект
     [SerializeField]
     private M3Object _object;
+    
+    // нижнее покрытие
+    [SerializeField]
+    private M3Cover _bottomCover;
 
     // доска
     [SerializeField]
@@ -54,6 +58,8 @@ public class M3Tile : MonoBehaviour
     // получение гравитации
     public M3GravityDir GetGravity() => m3GravityDir;
     
+    // получение кавера (нижнего)
+    public M3Cover GetBottomCover() => _bottomCover;
 
     // установка генератора
     public void SetGenerator(M3Generator generator) => m3Generator = generator;
@@ -321,13 +327,20 @@ public class M3Tile : MonoBehaviour
     public M3Pos RightTilePos;
     public M3Pos LeftTilePos;
     
-    // установка объект
+    // установка объекта
     public void Set(M3Object m3Object)
     {
         // Debug.Log("Empty at: " + Pos().X + ", " + Pos().Y); 
         _object = m3Object;
     }
-
+    
+    // установка нижнего кавера
+    public void SetBottomCover(M3Cover m3Cover)
+    {
+        // Debug.Log("Empty at: " + Pos().X + ", " + Pos().Y); 
+        _bottomCover = m3Cover;
+    }
+    
     // позиция
     public M3Pos Pos() => pos;
 
@@ -446,6 +459,20 @@ public class M3Tile : MonoBehaviour
         DOTween.Sequence().Append(
             spriteRenderer.DOColor(defaultColor, 0.5f)
         );
+
+        // твиним кавер если он есть
+        if (_bottomCover != null)
+        {
+            // твин цвета внутреннего объекта
+            var tempRenderer = _bottomCover.GetComponent<SpriteRenderer>();
+            DOTween.Sequence().Append(
+                tempRenderer.DOColor(new Color(1, 1, 1, 1), 0.5f)
+            );
+            if (_bottomCover.transform.childCount > 0)
+            {
+                SpriteRenderer renderer = _bottomCover.transform.GetChild(0).GetComponent<SpriteRenderer>();
+            }
+        }        
         // твиним объект если он есть
         if (_object != null)
         {

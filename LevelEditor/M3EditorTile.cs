@@ -12,4 +12,5 @@ public class M3EditorTile : MonoBehaviour
     public bool IsEmpty;
     public bool IsDeliverer;
     public M3GravityDir gravityDir;
+    public M3EditorCover bottomCover;
 }

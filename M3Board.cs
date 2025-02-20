@@ -176,6 +176,11 @@ public class M3Board : MonoBehaviour
             var _object = SpawnTileObjectInfo(tile, _tile);
             // добавляем в список
             objects.Add(_object);
+            // спавним покрытие
+            if (tile.BottomCover.HasCover)
+            {
+                _tile.SetBottomCover(SpawnTileCoverInfo(tile, _tile, tile.BottomCover));
+            }
         }
         foreach (M3Tile _tile in tiles)
         {
@@ -265,6 +270,24 @@ public class M3Board : MonoBehaviour
         }
     }
 
+    // спавн кавера в тайле
+    private M3Cover SpawnTileCoverInfo(M3TileInfo tile, M3Tile _tile, M3CoverInfo cover) {
+        // тайл объект
+        GameObject _tileCover = Instantiate(
+            M3Prefabs.GetInstance().ByKey(cover.coverType),
+            ToPoint(tile.Pos.X, tile.Pos.Y),
+            Quaternion.identity
+        );
+        // даём информацию о тайле и поле каверу
+        M3Cover _tileCoverComponent = _tileCover.GetComponent<M3Cover>();
+        _tileCoverComponent.SetTile(_tile);
+        _tileCoverComponent.SetBoard(this);
+        // ставим альфа канал на 0
+        _tileCover.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);  
+        // возвращаем m3объект
+        return _tileCoverComponent;    
+    }
+    
     // анимация тайлов
     private readonly WaitForSeconds tileAnimationWait = new WaitForSeconds(0.05f);
     private IEnumerator AnimateTiles()

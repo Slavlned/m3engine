@@ -666,6 +666,11 @@ public class M3Object : MonoBehaviour
         }
         // ставим клетку на пустоту
         GetTile().Set(null);
+        // дамажим кавер (нижний)
+        if (GetTile().GetBottomCover() != null)
+        {
+            GetTile().GetBottomCover().Damage();
+        }
         // ставим состояние объекта на мертвое
         SetState(M3State.DIE);
         // уничтожаем с эффектом

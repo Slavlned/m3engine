@@ -53,6 +53,7 @@ public class M3Editor : MonoBehaviour
         tools.Add(new GenBrushTool(this));
         tools.Add(new GravityTool(this));
         tools.Add(new DelivererBrushTool(this));
+        tools.Add(new CoverBrushTool(this));
         // загружаем в дропдаун
         List<string> files = new M3EditorJson().GetFileNames();
         inputs.SetDropDown(files);
@@ -115,6 +116,21 @@ public class M3Editor : MonoBehaviour
     // получение инструмента
     public M3EditorTool GetTool() => this.tool;
 
+    // устанавливаем кавер на позиции
+
+    public void SetCoverAt(int x, int y, M3ObjectType typeForSet)
+    {
+        // клеточка
+        M3EditorTile tile = tiles.Find(cell => cell.X == x && cell.Y == y);
+
+        // устанавливаем
+        if (tile.bottomCover != null) { Destroy(tile.bottomCover.gameObject);  }
+        tile.bottomCover = Instantiate(
+            M3EditorPrefabs.ByKey(typeForSet), ToPoint(x, y), 
+            Quaternion.identity
+        ).GetComponent<M3EditorCover>();
+    }    
+    
     // устанавливаем на позиции
     public void SetAt(int x, int y, M3ObjectType typeForSet)
     {
@@ -342,6 +358,8 @@ public class M3Editor : MonoBehaviour
             tileInfo.IsGenerator = tile.IsGenerator;
             tileInfo.IsDeliverer = tile.IsDeliverer;
             tileInfo.Info = new M3ObjectInfo();
+            tileInfo.BottomCover = new M3CoverInfo();
+            // объект тайла
             if (tile.obj != null) {
                 tileInfo.Info.type = tile.obj.type;
                 tileInfo.Info.IsRandom = false;
@@ -351,6 +369,16 @@ public class M3Editor : MonoBehaviour
                 tileInfo.Info.IsRandom = true;
                 tileInfo.Info.parameters = new List<M3Param>();
             }
+            // кавер тайла (нижний)
+            if (tile.bottomCover != null) {
+                tileInfo.BottomCover.coverType = tile.bottomCover.type;
+                tileInfo.BottomCover.HasCover = true;
+            }
+            else
+            {
+                tileInfo.BottomCover.HasCover = false;
+            }   
+            // направление гравитации
             tileInfo.GravityDir = tile.gravityDir;
 
             // добавляем
@@ -433,6 +461,12 @@ public class M3Editor : MonoBehaviour
             {
                 SetAt(m3TileInfo.Pos.X, m3TileInfo.Pos.Y, m3TileInfo.Info.type);
                 tile.obj.parameters = m3TileInfo.Info.parameters;
+            }
+            
+            // кавер в клеточке (нижний)
+            if (m3TileInfo.BottomCover.HasCover)
+            {
+                SetCoverAt(m3TileInfo.Pos.X, m3TileInfo.Pos.Y, m3TileInfo.BottomCover.coverType);
             }
             
             // гравитация в клеточке
