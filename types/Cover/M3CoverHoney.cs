@@ -13,6 +13,11 @@ public class M3CoverHoney : MonoBehaviour
         cover.onCoverDamage += OnCoverDamage;
     }
     
+    private void OnDisable()
+    {
+        cover.onCoverDamage -= OnCoverDamage;
+    }
+    
     // когда прошелся дамаг по каверу
     private void OnCoverDamage()
     {
