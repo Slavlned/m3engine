@@ -1,0 +1,29 @@
+﻿public enum M3ObjectType
+{
+    // типы объектов
+    CHIP_PINK = 0,
+    CHIP_RED = 1,
+    CHIP_GREEN = 2,
+    CHIP_YELOW = 3,
+    CHIP_BLUE = 4,
+    BOMB = 5,
+    ARROW_HORIZONTAL = 6,
+    ARROW_VERTICAL = 7,
+    DONUT = 8,
+    COLOR_BOMB = 9,
+    JAR = 10,
+    GLOVES = 11,
+    PIE = 12,
+    CHEESE = 13,
+    ICECREAM = 14,
+    COMPASS = 15,
+    BUS = 16,
+    FOCUS_HAT = 17,
+    EGG = 18,
+    PIZZA_FURNACE = 19,
+    PIZZA = 20,
+    SWEETIE = 21,
+    GLOBE = 22,
+    WASHING_MACHINE = 23,
+    WASHING_CLOTH = 24
+}
