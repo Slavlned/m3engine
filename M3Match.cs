@@ -65,7 +65,7 @@ public class M3Match
                 tile.GetBoard().GetResult().UpdateGoal(tile.GetObject().GetM3Type(), 1);
                 tile.GetBoard().DestroyObject(tile.GetObject(), M3DestroyType.CALL);
             }
-
+            
             source.GetBoard().GetResult().UpdateGoal(source.GetObject().GetM3Type(), 1);
             source.GetBoard().DestroyObject(source.GetObject(), M3DestroyType.CALL);
         } else

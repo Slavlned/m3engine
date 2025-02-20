@@ -17,11 +17,19 @@ public class M3ObjectInfo
 }
 
 [System.Serializable]
+public class M3CoverInfo
+{
+    public bool HasCover;
+    public M3ObjectType coverType;
+}
+
+[System.Serializable]
 public class M3TileInfo
 {
     // ифно о тайле
     public M3Pos Pos;
     public M3ObjectInfo Info;
+    public M3CoverInfo BottomCover;
     // генератор ли
     public bool IsGenerator;
     // деливерер
