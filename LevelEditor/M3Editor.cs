@@ -299,10 +299,18 @@ public class M3Editor : MonoBehaviour
                 {
                     Destroy(tile.upLayerObj);
                 }
+                if (tile.gravityLayerObj != null)
+                {
+                    Destroy(tile.gravityLayerObj);
+                }                
                 if (tile.obj != null)
                 {
                     Destroy(tile.obj.gameObject);
                 }
+                if (tile.bottomCover != null)
+                {
+                    Destroy(tile.bottomCover.gameObject);
+                }                  
             }
         });
         tiles.Clear();
@@ -416,6 +424,10 @@ public class M3Editor : MonoBehaviour
             {
                 Destroy(tile.obj.gameObject);
             }
+            if (tile.bottomCover != null)
+            {
+                Destroy(tile.bottomCover.gameObject);
+            }            
         });
         tiles.Clear();
         
